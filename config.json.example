@@ -1,0 +1,5 @@
+{
+  "targetuser": "the target username goes here",
+  "consumer_key": "get this from the apps twitter page",
+  "consumer_secret": "get this from the apps twitter page"
+}
