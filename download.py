@@ -33,17 +33,17 @@ def getTweets():
     api = tweepy.API(auth)
 
     alltweets = []
-    new_tweets = api.user_timeline(screen_name = screen_name,count=20, since=sinceID)
+    new_tweets = api.user_timeline(screen_name = screen_name,count=20, since=sinceID, tweet_mode='extended')
     alltweets.extend(new_tweets)
     oldest = alltweets[-1].id - 1
 
     while len(new_tweets) > 0:
-        new_tweets = api.user_timeline(screen_name = screen_name,count=20,since = sinceID, max_id=oldest)
+        new_tweets = api.user_timeline(screen_name = screen_name,count=20,since = sinceID, max_id=oldest, tweet_mode='extended')
         alltweets.extend(new_tweets)
         oldest = alltweets[-1].id - 1
 
     for tweet in alltweets:
-        outtweets[tweet.id_str] = {"date": str(tweet.created_at), "text": tweet.text}
+        outtweets[tweet.id_str] = {"date": str(tweet.created_at), "text": tweet.full_text}
 
     if len(alltweets) > 0:
         with open(fileName, 'w+', encoding='utf8') as outfile:
@@ -51,4 +51,4 @@ def getTweets():
 
 
 if __name__ == '__main__':
-    get_all_tweets()
+    getTweets()
