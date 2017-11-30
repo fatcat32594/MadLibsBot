@@ -6,7 +6,7 @@ import json
 import time
 import os.path
 
-def get_all_tweets():
+def getTweets():
     #get configuration
     with open('config.json', 'r') as configFile:
         config = json.load(configFile)
